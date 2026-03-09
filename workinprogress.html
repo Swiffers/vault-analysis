@@ -378,6 +378,60 @@
 </div>
 </section>
 
+<!-- ═══════════════ SECTION 5: COMBO COLUMNS = ROSE ± ROSE ═══════════════ -->
+<section>
+<h2>Combo Columns = ROSE &plusmn; Its Own Letters</h2>
+<div class="eli5">
+  In the 10&times;4 grid, three columns have sums that equal the combination lock numbers.
+  Each of those sums can be written as <strong>ROSE (57) plus or minus a letter of ROSE itself</strong>:<br><br>
+
+  <table style="border-collapse:collapse; margin:8px 0 12px; font-size:0.95em; width:100%;">
+    <thead>
+      <tr style="border-bottom:2px solid var(--border);">
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">Column</th>
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">Letters &darr;</th>
+        <th style="padding:6px 10px; text-align:right; color:var(--dim); font-weight:500;">Sum</th>
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">= ROSE &hellip;</th>
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">Combo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 10px; font-weight:700;">C8 &ensp;<span style="color:var(--dim);font-weight:400;">[7]</span></td>
+        <td style="padding:8px 10px; font-family:monospace;">F &middot; F &middot; L &middot; O</td>
+        <td style="padding:8px 10px; text-align:right; font-weight:700;">39</td>
+        <td style="padding:8px 10px;">ROSE(57) &minus; <strong style="color:var(--red);">R</strong>(18)</td>
+        <td style="padding:8px 10px; font-weight:700; color:var(--gold);">= L39</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 10px; font-weight:700;">C10 <span style="color:var(--dim);font-weight:400;">[9]</span></td>
+        <td style="padding:8px 10px; font-family:monospace; color:var(--purple);">R &middot; O &middot; S &middot; E</td>
+        <td style="padding:8px 10px; text-align:right; font-weight:700;">57</td>
+        <td style="padding:8px 10px;">ROSE itself</td>
+        <td style="padding:8px 10px; font-weight:700; color:var(--purple);">= ROSE</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 10px; font-weight:700;">C7 &ensp;<span style="color:var(--dim);font-weight:400;">[6]</span></td>
+        <td style="padding:8px 10px; font-family:monospace;">S &middot; L &middot; L &middot; S</td>
+        <td style="padding:8px 10px; text-align:right; font-weight:700;">62</td>
+        <td style="padding:8px 10px;">ROSE(57) + <strong style="color:var(--purple);">E</strong>(5)</td>
+        <td style="padding:8px 10px; font-weight:700; color:var(--gold);">= R62</td>
+      </tr>
+    </tbody>
+  </table>
+
+  And R05 = <strong style="color:var(--purple);">E</strong> = 5 &mdash; just the last letter of ROSE on its own.<br><br>
+
+  <strong>In plain English:</strong> ROSE is the center of the lock. To get each combo number, you only need
+  the <strong style="color:var(--red);">first letter (R)</strong> and <strong style="color:var(--purple);">last letter (E)</strong> of ROSE as operators:
+  subtract R to go left (L39), add E to go right (R62), or take E alone (R05).
+  The middle letters O and S never move &mdash; they stay inside ROSE.<br><br>
+
+  <span class="dim">Equivalently: L39 = O+S+E = 15+19+5 = 39 (ROSE without R), and R62 = R+O+S+E+E = 18+15+19+5+5 = 62 (ROSE with E doubled).
+  The combo columns are not independent numbers &mdash; they all orbit ROSE.</span>
+</div>
+</section>
+
 </div>
 
 <script>
