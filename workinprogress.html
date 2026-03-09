@@ -452,7 +452,7 @@ const ROSE_IDX = [0,6,10];
 // ── Build vault table ──
 (function(){
   const t=document.getElementById('vt'), hd=t.createTHead(), hr=hd.insertRow(), bd=t.createTBody();
-  ['#','Word','Scrabble Values','ASTER','Sum','Ltr','A1Z26','T(n)','Range','Dot'].forEach(h=>{
+  ['#','Word','Scrabble Values','ASTER','Sum','Ltr','A1Z26','T(n)','Range','Dot','ROSE → Combo'].forEach(h=>{
     const th=document.createElement('th'); th.textContent=h; hr.appendChild(th);
   });
   let pos=1, triTotal=0;
@@ -509,17 +509,38 @@ const ROSE_IDX = [0,6,10];
     td.textContent=pos+'-'+end;
     td=tr.insertCell(); td.className='c';
     if(dot){const b=document.createElement('span');b.className='dot-badge';b.textContent='●'+dot;td.appendChild(b);}
+
+    // ROSE → Combo column
+    td=tr.insertCell(); td.className='c'; td.style.fontSize='0.85em';
+    if(i===0){
+      td.innerHTML='<b style="color:var(--gold)">R</b><span style="color:var(--dim)">OSE(57)+E(5)=</span><b style="color:var(--gold)">R62</b>';
+      td.title='A1Z26(ROSE)=57 + A1Z26(E)=5 = 62 = R62';
+    } else if(i===6){
+      td.innerHTML='<b style="color:var(--gold)">O</b><span style="color:var(--dim)">+S+E = 15+19+5 =</span><b style="color:var(--gold)"> L39</b>';
+      td.title='A1Z26(O)+A1Z26(S)+A1Z26(E) = 15+19+5 = 39 = L39';
+    } else if(i===10){
+      td.innerHTML='<b style="color:var(--gold)">S</b><span style="color:var(--dim)">+E = 19+5 in</span><b style="color:var(--gold)"> L39</b>';
+      td.title='S(19) and E(5) are part of OSE = 39 = L39';
+    } else {
+      td.textContent='—'; td.style.color='var(--dim)';
+    }
+
     pos=end+1;
   });
 
   // Sum row for T(n)
   const sr=bd.insertRow(); sr.style.borderTop='2px solid var(--border)';
-  for(let c=0;c<10;c++){
+  for(let c=0;c<11;c++){
     const td=sr.insertCell();
     if(c===7){
       td.className='c'; td.style.fontWeight='700'; td.style.fontSize='0.9em';
       td.innerHTML='<span style="color:var(--gold)">Σ = '+triTotal+'</span>';
       td.title='Sum of all triangular numbers = 91 = total locations';
+    }
+    if(c===10){
+      td.className='c'; td.style.fontSize='0.85em';
+      td.innerHTML='<b style="color:var(--gold)">R05</b><span style="color:var(--dim)"> = E(5)</span>';
+      td.title='R05 = A1Z26(E) = 5, the last letter of ROSE';
     }
   }
 })();
