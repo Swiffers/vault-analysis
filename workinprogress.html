@@ -3,654 +3,545 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MrBeast Vault — Work In Progress</title>
+<title>MrBeast Vault Door — Work In Progress</title>
 
-<meta property="og:title" content="MrBeast Vault — How ROSE Was Hidden in Plain Sight">
-<meta property="og:description" content="A step-by-step visual guide showing how 19 Scrabble words on a vault door, a Shakespeare quote, and a combination lock all point to one word: ROSE.">
+<!-- Open Graph (Discord, Slack, Facebook, etc.) -->
+<meta property="og:title" content="MrBeast Vault Door — ROSE Mechanism Analysis">
+<meta property="og:description" content="How 19 Scrabble words, a 10×4 Shakespeare grid, and Romeo & Juliet Act 2 Scene 2 encode the combination lock R62 L39 R05 → ROSE.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://swiffers.github.io/vault-analysis/">
+
+<!-- Twitter/X Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MrBeast Vault — How ROSE Was Hidden in Plain Sight">
-<meta name="twitter:description" content="A step-by-step visual guide showing how 19 Scrabble words, Shakespeare, and a combination lock all point to ROSE.">
-<meta name="description" content="MrBeast $1M Puzzle Hunt — Step-by-step visual guide to the ROSE mechanism hidden in the vault door.">
+<meta name="twitter:title" content="MrBeast Vault Door — ROSE Mechanism Analysis">
+<meta name="twitter:description" content="How 19 Scrabble words, a 10×4 Shakespeare grid, and Romeo & Juliet Act 2 Scene 2 encode the combination lock R62 L39 R05 → ROSE.">
+
+<!-- General meta -->
+<meta name="description" content="MrBeast $1M Puzzle Hunt — Vault door analysis showing how 19 Scrabble words and a Shakespeare grid encode the ROSE mechanism and combination lock R62 L39 R05.">
 <meta name="theme-color" content="#b8860b">
-
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#fff; color:#333; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height:1.7; }
-  .page { max-width:760px; margin:0 auto; padding:48px 28px 100px; }
-
-  /* Header */
-  .hero { text-align:center; margin-bottom:56px; }
-  .hero h1 { font-size:2em; font-weight:700; color:#111; margin-bottom:8px; }
-  .hero .sub { font-size:1em; color:#888; }
-
-  /* Steps */
-  .step { margin-bottom:52px; }
-  .step-num { display:inline-flex; align-items:center; justify-content:center;
-              width:36px; height:36px; border-radius:50%; background:#b8860b; color:#fff;
-              font-weight:700; font-size:0.95em; margin-bottom:12px; }
-  .step h2 { font-size:1.3em; font-weight:700; color:#111; margin-bottom:12px; }
-  .step p, .step li { font-size:0.95em; color:#444; margin-bottom:10px; }
-  .step ul { padding-left:20px; }
-  .step strong { color:#111; }
-
-  /* Cards */
-  .card { background:#f8f8fb; border:1px solid #e8e8f0; border-radius:12px; padding:24px; margin:16px 0; }
-  .card-dark { background:#1a1a2e; color:#ddd; border:none; }
-  .card-dark strong { color:#fff; }
-
-  /* Quote */
-  .quote { font-family: Georgia, 'Times New Roman', serif; font-size:1.15em;
-           font-style:italic; color:#555; padding:16px 24px; border-left:4px solid #b8860b;
-           margin:16px 0; background:#fdfbf5; border-radius:0 8px 8px 0; }
-  .quote b { font-style:normal; color:#111; }
-
-  /* Big letter display */
-  .big-letters { display:flex; justify-content:center; gap:16px; margin:20px 0; }
-  .big-letter { text-align:center; }
-  .big-letter .char { font-size:3em; font-weight:800; line-height:1.1; }
-  .big-letter .label { font-size:0.7em; color:#888; margin-top:4px; }
-
-  /* Grid table */
-  .grid-wrap { overflow-x:auto; margin:16px 0; }
-  table.grid { border-collapse:collapse; margin:0 auto; font-family:'SF Mono','Fira Code',monospace; }
-  table.grid th { padding:8px 14px; font-size:0.75em; color:#999; font-weight:500; text-align:center; }
-  table.grid td { padding:12px 14px; text-align:center; font-size:1.2em; font-weight:600;
-                  border-bottom:1px solid #eee; color:#333; }
-  table.grid .rl { color:#bbb; font-size:0.75em; font-weight:400; text-align:right; padding-right:14px; }
-  table.grid .hi-col { background:rgba(184,134,11,0.08); }
-  table.grid .rose-col { background:rgba(119,51,187,0.06); }
-  table.grid .sum-row td { border-top:2px solid #ddd; font-weight:800; padding-top:14px; }
-  table.grid .sum-row .hi-col { color:#b8860b; }
-  table.grid .sum-row .rose-col { color:#7733bb; }
-  table.grid .sum-row td:not(.hi-col):not(.rose-col) { color:#bbb; }
-  table.grid .note-row td { font-size:0.65em; font-weight:400; padding:4px 14px; border:none; color:#b8860b; }
-
-  /* Callout boxes */
-  .callout { border-radius:10px; padding:18px 22px; margin:16px 0; font-size:0.92em; }
-  .callout-gold { background:#fdf8ec; border:1px solid #e8d8a0; }
-  .callout-green { background:#f0faf3; border:1px solid #b0ddb8; }
-  .callout-blue { background:#f0f6fd; border:1px solid #a8c8e8; }
-  .callout b { color:#111; }
-
-  /* Scene text */
-  .scene { font-family: Georgia, 'Times New Roman', serif; font-size:1.1em;
-           line-height:2; padding:16px 20px; background:#fafafa; border-radius:10px;
-           margin:16px 0; }
-  .scene .hl { font-weight:800; font-size:1.2em; text-decoration:underline; text-underline-offset:3px; }
-  .scene .hl-r { color:#cc3333; }
-  .scene .hl-b { color:#2266aa; }
-  .scene .hl-p { color:#7733bb; }
-  .scene .pos { font-family:monospace; font-size:0.65em; vertical-align:super; color:#999; }
-
-  /* Vault bar */
-  .bar-container { margin:20px 0; }
-  .bar-outer { position:relative; height:36px; background:#eee; border-radius:8px; overflow:visible; }
-  .bar-word { position:absolute; top:0; height:100%; border-radius:4px; display:flex;
-              align-items:center; justify-content:center; font-size:0.55em; font-weight:600;
-              color:rgba(0,0,0,0.3); overflow:hidden; white-space:nowrap; }
-  .bar-word:nth-child(odd) { background:rgba(0,0,0,0.04); }
-  .bar-word:nth-child(even) { background:rgba(0,0,0,0.08); }
-  .bar-word.hl-word { z-index:2; }
-  .bar-dot { position:absolute; top:-8px; width:16px; height:16px; border-radius:50%;
-             background:#b8860b; border:2px solid #fff; z-index:3;
-             box-shadow:0 1px 4px rgba(0,0,0,0.25); }
-  .bar-dot-label { position:absolute; top:42px; font-size:0.7em; font-weight:700;
-                   transform:translateX(-50%); text-align:center; white-space:nowrap; }
-  .bar-dot-pos { font-size:0.8em; color:#888; font-weight:400; display:block; }
-
-  /* Funnel / conversion */
-  .convert-row { display:flex; justify-content:center; gap:12px; flex-wrap:nowrap; margin:20px 0; }
-  .convert-item { text-align:center; min-width:0; flex:1; max-width:140px; }
-  .convert-item .word { font-weight:700; font-size:0.8em; color:#666; }
-  .convert-item .num { font-size:1.5em; font-weight:800; color:#333; line-height:1.3; }
-  .convert-item .arrow { color:#ccc; font-size:1.2em; }
-  .convert-item .letter { font-size:2.4em; font-weight:800; line-height:1.1; }
-  .convert-item .explain { font-size:0.68em; color:#999; }
-  .convert-plus { display:flex; align-items:center; font-size:1.5em; color:#ccc; font-weight:300; padding-top:40px; }
-
-  /* Simple table */
-  .simple-tbl { width:100%; border-collapse:collapse; font-size:0.85em; margin:16px 0; }
-  .simple-tbl th { text-align:left; padding:10px 12px; font-weight:600; color:#888;
-                   border-bottom:2px solid #eee; font-size:0.85em; }
-  .simple-tbl td { padding:8px 12px; border-bottom:1px solid #f0f0f0; }
-  .simple-tbl tr:hover td { background:#f8f8fc; }
-  .simple-tbl .gold { color:#b8860b; font-weight:700; }
-  .simple-tbl .dim { color:#bbb; }
-  .simple-tbl .rose-row td { background:rgba(184,134,11,0.06); }
-
-  /* Divider */
-  .divider { border:none; border-top:1px solid #eee; margin:40px 0; }
-
-  /* Footer */
-  .footer { text-align:center; font-size:0.8em; color:#bbb; margin-top:48px; }
-
-  /* Responsive */
-  @media (max-width:600px) {
-    .page { padding:24px 16px 60px; }
-    .hero h1 { font-size:1.5em; }
-    table.grid td { padding:8px 8px; font-size:1em; }
-    .convert-row { gap:6px; }
-    .convert-item .letter { font-size:1.8em; }
-    .convert-item .num { font-size:1.2em; }
-    .convert-plus { font-size:1.2em; }
+  :root {
+    --bg: #ffffff;
+    --card: #f7f7fa;
+    --border: #e0e0e8;
+    --dim: #888899;
+    --text: #333340;
+    --bright: #111118;
+    --gold: #b8860b;
+    --red: #cc3333;
+    --blue: #2266aa;
+    --green: #1a8a4a;
+    --purple: #7733bb;
+    --rose-glow: rgba(184,134,11,0.07);
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'SF Mono','Fira Code','Consolas',monospace; }
+  .page { max-width:1000px; margin:0 auto; padding:40px 32px 80px; }
+  h1 { color:var(--bright); font-size:1.5em; font-weight:600; }
+  .tagline { color:var(--dim); font-size:0.82em; margin:4px 0 40px; }
+  section { margin-bottom:56px; }
+  h2 { color:var(--gold); font-size:0.9em; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; }
+
+  .stats { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .stat { background:var(--card); border:1px solid var(--border); border-radius:6px;
+          padding:5px 12px; font-size:0.76em; color:var(--dim); }
+  .stat b { color:var(--gold); font-weight:600; }
+
+  /* ── 10x4 GRID ── */
+  .grid-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:28px; }
+  table.grid { border-collapse:collapse; margin:0 auto; }
+  table.grid th { padding:6px 16px; font-size:0.72em; color:var(--dim); font-weight:500; text-align:center; }
+  table.grid td { padding:10px 16px; text-align:center; font-size:1.2em; font-weight:500;
+                  border-bottom:1px solid var(--border); color:var(--bright); }
+  table.grid .rl { color:var(--dim); font-size:0.75em; font-weight:400; text-align:right; padding-right:12px; }
+  table.grid .combo { background:rgba(184,134,11,0.08); }
+  table.grid .rosecol { background:rgba(119,51,187,0.06); }
+  table.grid .aster-c { color:var(--gold); }
+  table.grid .sum-row td { border-top:2px solid var(--border); font-weight:700; font-size:0.9em; padding-top:12px; }
+  table.grid .sum-row .combo { color:var(--gold); }
+  table.grid .sum-row .rosecol { color:var(--purple); }
+  table.grid .sum-row td:not(.combo):not(.rosecol) { color:var(--dim); }
+  table.grid .label-row td { font-size:0.65em; font-weight:400; padding:2px 16px; border:none; }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow { background:var(--card); border:1px solid var(--border); border-radius:12px;
+          padding:36px 32px 28px; }
+  .flow-label { text-align:center; color:var(--dim); font-size:0.72em; letter-spacing:1px;
+                margin-bottom:16px; text-transform:uppercase; }
+
+  /* The 134-char bar */
+  .bar-wrap { position:relative; margin:0 0 56px; padding:0 16px; }
+  .bar { position:relative; height:32px; background:#eeeef2; border:1px solid var(--border);
+         border-radius:6px; overflow:visible; }
+  .bar .zone { position:absolute; top:0; height:100%; border-radius:4px; opacity:0.9; }
+  .bar .zone-1 { left:0%; width:3.73%;
+    background:rgba(204,51,51,0.12); border:1px solid rgba(204,51,51,0.3); }
+  .bar .zone-7 { left:25.37%; width:3.73%;
+    background:rgba(34,102,170,0.12); border:1px solid rgba(34,102,170,0.3); }
+  .bar .zone-11 { left:45.52%; width:5.22%;
+    background:rgba(26,138,74,0.12); border:1px solid rgba(26,138,74,0.3); }
+
+  /* Separator ticks between word groups (18 total) */
+  .bar .sep { position:absolute; top:0; width:1px; height:100%; background:var(--border); z-index:1; }
+  .bar .sep-label { position:absolute; top:34px; font-size:0.55em; color:#bbb;
+                    transform:translateX(-50%); white-space:nowrap; }
+
+  /* 3 Gold combo dots on top of bar */
+  .bar .dot { position:absolute; top:-7px; width:14px; height:14px; border-radius:50%;
+              background:var(--gold); border:2px solid #fff; z-index:3; box-shadow:0 1px 3px rgba(0,0,0,0.2); }
+  .bar .dot-5  { left:calc( 3.73% - 7px); }
+  .bar .dot-39 { left:calc(29.10% - 7px); }
+  .bar .dot-62 { left:calc(46.27% - 7px); }
+
+  /* Labels BELOW the bar, centered on dot positions */
+  .bar-labels { position:relative; height:48px; margin-top:6px; }
+  .bar-labels .bl { position:absolute; text-align:center; transform:translateX(-50%); }
+  .bar-labels .bl-word { font-weight:700; font-size:0.85em; letter-spacing:1px; }
+  .bar-labels .bl-pos  { font-size:0.62em; color:var(--dim); margin-top:1px; }
+  .bar-labels .bl-1  { left:3.73%; }
+  .bar-labels .bl-7  { left:29.10%; }
+  .bar-labels .bl-11 { left:46.27%; }
+  .bar-labels .bl-end { position:absolute; right:0; text-align:right; }
+
+  /* Funnels */
+  .funnels { display:flex; justify-content:center; gap:48px; margin:12px 0 8px; }
+  .funnel { display:flex; flex-direction:column; align-items:center; gap:6px; min-width:130px; }
+  .funnel .f-label { font-size:0.7em; color:var(--dim); letter-spacing:0.5px; }
+  .funnel .f-val { font-size:0.85em; color:var(--bright); font-weight:600; }
+  .funnel .f-arrow { color:#aaa; font-size:1.2em; line-height:1; }
+  .funnel .f-ltr { font-size:2.8em; font-weight:800; line-height:1; }
+  .funnel-combo { min-width:110px; border-left:2px dashed var(--border); padding-left:36px; margin-left:8px; }
+
+  /* Result */
+  .result { display:flex; align-items:center; justify-content:center; gap:20px;
+            margin:24px 0 20px; padding:18px 0;
+            border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .result .r-ltr { font-size:3.2em; font-weight:800; letter-spacing:6px; }
+  .result .r-eq { color:var(--dim); font-size:0.8em; }
+
+  .flow-footer { display:flex; justify-content:space-between; font-size:0.72em; color:var(--dim);
+                 line-height:1.6; padding:0 4px; }
+  .flow-footer b { color:var(--text); }
+
+  /* ── VAULT TABLE ── */
+  .tbl-wrap { overflow-x:auto; }
+  table.vault { width:100%; border-collapse:collapse; font-size:0.76em; }
+  table.vault th {
+    text-align:left; padding:8px 10px; color:var(--dim); font-weight:500;
+    border-bottom:1px solid var(--border); font-size:0.9em; letter-spacing:0.5px;
+  }
+  table.vault td { padding:7px 10px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  table.vault tr:hover td { background:#f0f0f6; }
+  table.vault .r { text-align:right; }
+  table.vault .c { text-align:center; }
+  table.vault tr.rose td { background:var(--rose-glow); }
+  table.vault tr.rose:hover td { background:rgba(184,134,11,0.12); }
+
+  .pills { display:flex; gap:2px; flex-wrap:nowrap; }
+  .pill { width:20px; height:20px; display:flex; align-items:center; justify-content:center;
+          border-radius:3px; font-size:0.9em; }
+  .pill.a { background:rgba(184,134,11,0.12); color:var(--gold); font-weight:600; }
+  .pill.n { color:var(--dim); }
+
+  .mask { letter-spacing:1.5px; font-size:1.05em; }
+  .mask .hi { color:var(--gold); font-weight:700; }
+  .mask .lo { color:#ccc; }
+
+  .ltr { font-size:1.3em; font-weight:700; }
+  .ltr-R { color:var(--red); }
+  .ltr-O { color:var(--blue); }
+  .ltr-S { color:var(--green); }
+
+  .dot-badge { background:var(--gold); color:#fff; font-weight:700; font-size:0.85em;
+               padding:1px 7px; border-radius:10px; }
+
+  /* ELI5 explanation blocks */
+  .eli5 { background:#faf8f2; border-left:3px solid var(--gold);
+          border-radius:0 8px 8px 0; padding:14px 18px; margin-bottom:20px;
+          font-size:0.82em; line-height:1.65; color:var(--text); font-family:system-ui,-apple-system,sans-serif; }
+  .eli5 strong { color:var(--bright); }
+  .eli5 .dim { color:var(--dim); }
 </style>
 </head>
 <body>
 <div class="page">
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<div class="hero">
-  <h1>How "ROSE" Was Hidden in the Vault Door</h1>
-  <div class="sub">MrBeast $1M Puzzle Hunt &mdash; The Shakespeare Connection</div>
+<h1>Vault Door Analysis</h1>
+<div class="tagline">19 Scrabble words &middot; 134 letters &middot; 40 ASTER &middot; 3 dots &rarr; ROSE</div>
+
+<!-- ═══════════════ SECTION 1: 10x4 GRID (FIRST) ═══════════════ -->
+<section>
+<h2>10&times;4 Shakespeare Grid</h2>
+<div class="eli5">
+  The 40-letter Roamy phrase <strong>"NUMBERS FOR THIS HALF WOULD SMELL AS SWEET AS ONE"</strong>
+  is a Shakespeare substitution — it replaces <em>"A rose by any other name would smell as sweet"</em>
+  from Romeo &amp; Juliet, Act 2 Scene 2.<br><br>
+  Write it in <strong>10 columns &times; 4 rows</strong>. Convert each letter to its number (A=1, Z=26) and
+  <strong>add up each column</strong>. Two column sums jump out: <strong>Col 7 = 62</strong> and <strong>Col 8 = 39</strong> —
+  the combination lock numbers R62 and L39. Column 10 reads downward as <strong>R-O-S-E</strong>, and its sum (57) equals A1Z26(ROSE).
+  This is the <em>only</em> grid arrangement of the phrase where both 62 and 39 appear as column sums.<br><br>
+  The vault door circle has Scrabble tile values for 19 words — but three values are <strong>missing from the non-underlined set: {6, 7, 9}</strong>.
+  Using 0-indexed columns (C0–C9), those exact numbers point to the combo columns:
+  <strong>6→Col 6 (sum 62 = R62)</strong>, <strong>7→Col 7 (sum 39 = L39)</strong>, <strong>9→Col 9 (spells ROSE)</strong>.
+  The vault door literally tells you <em>which columns to read</em>.
 </div>
-
-<!-- ═══════════════ STEP 1: THE BIG PICTURE ═══════════════ -->
-<div class="step">
-  <div class="step-num">1</div>
-  <h2>The puzzle has two phases &mdash; just like a play</h2>
-  <p>
-    MrBeast's $1M treasure hunt (designed by puzzle legend Mike Selinker) has
-    <strong>Phase 1</strong> (51 standalone puzzles) and <strong>Phase 2</strong>
-    (40 "Trips by Roamy" rows, split into Cars, Horses, and Planes &mdash;
-    like scenes within a second act).
-  </p>
-  <p>
-    Solving Phase 2 produces a <strong>40-letter secret phrase</strong>.
-    That phrase turns out to be a rewrite of a famous Shakespeare quote &mdash;
-    and everything connects back to one word: <strong>ROSE</strong>.
-  </p>
+<div class="grid-card">
+<table class="grid" id="gt"></table>
 </div>
-
-<!-- ═══════════════ STEP 2: THE PHRASE ═══════════════ -->
-<div class="step">
-  <div class="step-num">2</div>
-  <h2>The secret phrase is a Shakespeare substitution</h2>
-  <p>
-    Take the first letter of each of the 40 Roamy words (in chain order).
-    You get:
-  </p>
-  <div class="card" style="text-align:center; font-family:monospace; font-size:1.1em; letter-spacing:2px; font-weight:700; color:#111;">
-    NUMBERS FOR THIS HALF WOULD SMELL AS SWEET AS ONE
-  </div>
-  <p>This is a direct rewrite of the famous line from <strong>Romeo &amp; Juliet, Act 2 Scene 2</strong>:</p>
-  <div class="quote">
-    &ldquo;A <b>rose</b> by any other name would smell as sweet&rdquo;
-  </div>
-  <p>
-    Same structure, same word count (10 = 10).
-    <strong>"A rose by any other name"</strong> became
-    <strong>"Numbers for this half"</strong>.
-    The puzzle swapped the first five words but kept the last five identical.
-  </p>
-</div>
-
-<!-- ═══════════════ STEP 3: THE GRID ═══════════════ -->
-<div class="step">
-  <div class="step-num">3</div>
-  <h2>Write the phrase in a 10-column grid &mdash; the lock combination appears</h2>
-  <p>
-    The phrase has exactly 40 letters. Write them in <strong>10 columns &times; 4 rows</strong>.
-    Now convert each letter to a number (A=1, B=2, ... Z=26) and <strong>add up each column</strong>:
-  </p>
-  <div class="grid-wrap">
-    <table class="grid" id="mainGrid"></table>
-  </div>
-
-  <div class="callout callout-gold">
-    <strong>Column 6 sums to 62</strong> and <strong>Column 7 sums to 39</strong> &mdash;
-    these are the combination lock numbers <strong>R62</strong> (turn right to 62) and <strong>L39</strong> (turn left to 39)!
-    The lock code <strong>R62 L39 R05</strong> is literally baked into the grid.
-  </div>
-
-  <div class="callout callout-green">
-    <strong>Column 9 reads downward: R &rarr; O &rarr; S &rarr; E</strong>.
-    Its sum is 57, which equals the number value of the word ROSE (18+15+19+5 = 57).
-    The grid spells out the answer in its last column.
-  </div>
-
-  <p style="color:#888; font-size:0.88em;">
-    This is the <em>only</em> way to arrange 40 letters into columns where both 62 and 39 appear as column sums.
-    It's not a coincidence &mdash; it's by design.
-  </p>
-</div>
-
-<!-- ═══════════════ STEP 4: THE VAULT DOOR ═══════════════ -->
-<div class="step">
-  <div class="step-num">4</div>
-  <h2>The physical vault door has 19 Scrabble words around its rim</h2>
-  <p>
-    In the MrBeast Super Bowl commercial, the vault door has <strong>134 numbers</strong>
-    arranged in a circle, separated into <strong>19 groups</strong>.
-    Each group is the <strong>Scrabble tile value</strong> of each letter in a word.
-  </p>
-  <p>For example, HEXYL: H=4, E=1, X=8, Y=4, L=1 &rarr; the vault shows <code>4 1 8 4 1</code>.</p>
-
-  <div class="bar-container" id="wordBar"></div>
-
-  <p>
-    Three <strong>gold dots</strong> are physically engraved on the vault door at
-    positions <strong>5</strong>, <strong>39</strong>, and <strong>62</strong> &mdash;
-    the same numbers as the combination lock code (R05, L39, R62).
-  </p>
-</div>
-
-<!-- ═══════════════ STEP 5: DOTS → ROSE ═══════════════ -->
-<div class="step">
-  <div class="step-num">5</div>
-  <h2>The three dots select words that spell ROSE</h2>
-  <p>The gold dots land on three specific words. Add up each word's Scrabble tile values, then convert the total to a letter:</p>
-
-  <div class="convert-row">
-    <div class="convert-item">
-      <div class="word" style="color:#cc3333;">HEXYL</div>
-      <div class="explain">dot at position 5</div>
-      <div class="num">18</div>
-      <div class="arrow">&darr;</div>
-      <div class="letter" style="color:#cc3333;">R</div>
-      <div class="explain">18th letter</div>
+<div class="stats" style="margin-top:14px;">
+  <div class="stat">Col 7 = <b>62 = R62</b></div>
+  <div class="stat">Col 8 = <b>39 = L39</b></div>
+  <div class="stat">Col 10 reads down = <b style="color:var(--purple)">R O S E</b></div>
+  <div class="stat">A1Z26(ROSE) = <b>57</b> = Col 10 sum</div>
+  <div class="stat">Scene pos 5,39,62 &rarr; <b>S, F, R</b> = Row 1 at C7, C8, C10</div>
+  <div style="font-size:0.72em; color:var(--dim); padding:6px 0 0 4px; line-height:1.6; max-width:720px;">
+    The challenge itself has two phases: <strong>Phase 1</strong> (51 Stage 1 puzzles) and <strong>Phase 2</strong> (40 Roamy rows, split into transport groups — Cars, Horses, Planes — functioning like scenes within the second act).
+    The Shakespeare connection lands on <strong>Act 2, Scene 2</strong> — mirroring the puzzle's own Phase 2 structure.<br><br>
+    In that scene, strip everything except letters. The combo positions 5, 39, 62 land in the opening two lines:
+    <div style="margin:10px 0 8px; padding:10px 14px; background:rgba(0,0,0,0.03); border-radius:6px; font-family:'Georgia','Times New Roman',serif; font-size:1.05em; line-height:1.9; color:var(--text);">
+      &ldquo;He je<b style="color:var(--red); font-size:1.15em; text-decoration:underline;">s</b>ts at scars that never felt a wound.&rdquo;<br>
+      &ldquo;But, so<b style="color:var(--blue); font-size:1.15em; text-decoration:underline;">f</b>t! what light through yonde<b style="color:var(--purple); font-size:1.15em; text-decoration:underline;">r</b> window breaks?&rdquo;
+      <div style="font-family:monospace; font-size:0.7em; color:var(--dim); margin-top:6px; line-height:1.4;">
+        pos 5 = <b style="color:var(--red)">S</b> &nbsp;&middot;&nbsp; pos 39 = <b style="color:var(--blue)">F</b> &nbsp;&middot;&nbsp; pos 62 = <b style="color:var(--purple)">R</b> &nbsp;&rarr;&nbsp; Grid Row 1 at C7, C8, C10
+      </div>
     </div>
-    <div class="convert-plus">+</div>
-    <div class="convert-item">
-      <div class="word" style="color:#2266aa;">ATAXY</div>
-      <div class="explain">dot at position 39</div>
-      <div class="num">15</div>
-      <div class="arrow">&darr;</div>
-      <div class="letter" style="color:#2266aa;">O</div>
-      <div class="explain">15th letter</div>
+    These three letters match Row 1 of the grid at the combo columns. Tested all 28 scenes in the play &mdash; <strong>only Act 2 Scene 2</strong> produces this match.
+  </div>
+  <div class="stat">Missing vault values <b>{6,7,9}</b> = combo columns (0-indexed)</div>
+  <div class="stat">C3+C4 = <b>91</b> = total locations &middot; C6&minus;C9 = <b>5</b> = R05</div>
+</div>
+</section>
+
+<!-- ═══════════════ SECTION 2: ROSE DIAGRAM ═══════════════ -->
+<section>
+<h2>How ROSE Emerges from the Vault Door</h2>
+<div class="eli5">
+  The vault door has <strong>19 Scrabble words</strong> totaling 134 letters arranged in a circle.
+  <strong>18 separator dots</strong> divide the 19 word groups (shown as grey lines on the bar below).
+  Three of these positions are <strong>gold combo dots</strong> at positions <strong>5, 39, and 62</strong> — the combination lock numbers (R05, L39, R62).<br><br>
+  Positions 5 and 39 land exactly on group boundaries (after HEXYL and ATAXY). Position 62 falls <em>inside</em> word #11 CONFLUX (which spans 62–68), not on a boundary.
+  Add up each word's Scrabble tile values: 18, 15, 19. Convert those totals to letters (A=1 … Z=26):
+  <strong>18→R</strong>, <strong>15→O</strong>, <strong>19→S</strong>. The combo's first number R05 = 5 → <strong>E</strong>.
+  Together: <strong>R + O + S + E = ROSE</strong> — the Shakespeare keyword.<br><br>
+  <span class="dim">Bonus: the actual characters sitting at dot positions 5, 39, 62 are L, Y, C. Their A1Z26 values sum to 12+25+3 = <strong>40</strong> = the number of Roamy rows.</span>
+</div>
+<div class="flow">
+
+  <div class="flow-label">134-character vault word concatenation &middot; 18 separators (grey) &middot; 3 combo dots (gold)</div>
+
+  <!-- Bar with zones, separator ticks, and combo dots -->
+  <div class="bar-wrap">
+    <div class="bar" id="vbar">
+      <div class="zone zone-1"></div>
+      <div class="zone zone-7"></div>
+      <div class="zone zone-11"></div>
+      <div class="dot dot-5"></div>
+      <div class="dot dot-39"></div>
+      <div class="dot dot-62"></div>
     </div>
-    <div class="convert-plus">+</div>
-    <div class="convert-item">
-      <div class="word" style="color:#1a8a4a;">CONFLUX</div>
-      <div class="explain">dot at position 62</div>
-      <div class="num">19</div>
-      <div class="arrow">&darr;</div>
-      <div class="letter" style="color:#1a8a4a;">S</div>
-      <div class="explain">19th letter</div>
-    </div>
-    <div class="convert-plus">+</div>
-    <div class="convert-item">
-      <div class="word" style="color:#7733bb;">Combo R05</div>
-      <div class="explain">lock's first number</div>
-      <div class="num">5</div>
-      <div class="arrow">&darr;</div>
-      <div class="letter" style="color:#7733bb;">E</div>
-      <div class="explain">5th letter</div>
+    <!-- Labels below bar, centered on dot positions -->
+    <div class="bar-labels">
+      <div class="bl bl-1">
+        <div class="bl-word" style="color:var(--red);">HEXYL</div>
+        <div class="bl-pos">pos 5</div>
+      </div>
+      <div class="bl bl-7">
+        <div class="bl-word" style="color:var(--blue);">ATAXY</div>
+        <div class="bl-pos">pos 39</div>
+      </div>
+      <div class="bl bl-11">
+        <div class="bl-word" style="color:var(--green);">CONFLUX</div>
+        <div class="bl-pos">pos 62</div>
+      </div>
+      <div class="bl bl-end">
+        <div class="bl-pos" style="margin-top:0;">134</div>
+      </div>
     </div>
   </div>
 
-  <div class="big-letters">
-    <div class="big-letter"><div class="char" style="color:#cc3333;">R</div></div>
-    <div class="big-letter"><div class="char" style="color:#2266aa;">O</div></div>
-    <div class="big-letter"><div class="char" style="color:#1a8a4a;">S</div></div>
-    <div class="big-letter"><div class="char" style="color:#7733bb;">E</div></div>
+  <!-- Funnel columns -->
+  <div class="funnels">
+    <div class="funnel">
+      <div class="f-label">Scrabble sum</div>
+      <div class="f-val">18</div>
+      <div class="f-arrow">&darr;</div>
+      <div class="f-label">A1Z26</div>
+      <div class="f-arrow">&darr;</div>
+      <div class="f-ltr" style="color:var(--red);">R</div>
+    </div>
+    <div class="funnel">
+      <div class="f-label">Scrabble sum</div>
+      <div class="f-val">15</div>
+      <div class="f-arrow">&darr;</div>
+      <div class="f-label">A1Z26</div>
+      <div class="f-arrow">&darr;</div>
+      <div class="f-ltr" style="color:var(--blue);">O</div>
+    </div>
+    <div class="funnel">
+      <div class="f-label">Scrabble sum</div>
+      <div class="f-val">19</div>
+      <div class="f-arrow">&darr;</div>
+      <div class="f-label">A1Z26</div>
+      <div class="f-arrow">&darr;</div>
+      <div class="f-ltr" style="color:var(--green);">S</div>
+    </div>
+    <div class="funnel funnel-combo">
+      <div class="f-label" style="color:var(--purple);">Combo R05</div>
+      <div class="f-val">5</div>
+      <div class="f-arrow">&darr;</div>
+      <div class="f-label">A1Z26</div>
+      <div class="f-arrow">&darr;</div>
+      <div class="f-ltr" style="color:var(--purple);">E</div>
+    </div>
   </div>
 
-  <p style="text-align:center; font-size:0.9em; color:#888;">
-    Three vault words + the lock number = <strong style="color:#111;">ROSE</strong> &mdash; the Shakespeare keyword.
-  </p>
-</div>
-
-<hr class="divider">
-
-<!-- ═══════════════ STEP 6: SHAKESPEARE PROOF ═══════════════ -->
-<div class="step">
-  <div class="step-num">6</div>
-  <h2>Shakespeare himself confirms it</h2>
-  <p>
-    Take the actual text of <strong>Romeo &amp; Juliet, Act 2 Scene 2</strong>.
-    Strip everything except letters (no spaces, no punctuation).
-    Now look at character positions <strong>5</strong>, <strong>39</strong>, and <strong>62</strong>
-    &mdash; the same combo numbers:
-  </p>
-
-  <div class="scene">
-    &ldquo;He je<span class="hl hl-r">s</span><span class="pos">5</span>ts at scars that never felt a wound.&rdquo;<br>
-    &ldquo;But, so<span class="hl hl-b">f</span><span class="pos">39</span>t! what light through yonde<span class="hl hl-p">r</span><span class="pos">62</span> window breaks?&rdquo;
+  <!-- Result -->
+  <div class="result">
+    <span class="r-eq">converges to</span>
+    <span class="r-ltr">
+      <span style="color:var(--red)">R</span><span style="color:var(--blue)">O</span><span style="color:var(--green)">S</span><span style="color:var(--purple)">E</span>
+    </span>
   </div>
 
-  <div class="callout callout-blue">
-    Position 5 = <strong style="color:#cc3333;">S</strong>,
-    position 39 = <strong style="color:#2266aa;">F</strong>,
-    position 62 = <strong style="color:#7733bb;">R</strong>.
-    <br>
-    These are exactly the letters in <strong>Row 1 of the grid</strong> at the combo columns
-    (C6=S, C7=F, C9=R). The grid and Shakespeare are cross-referencing each other.
+  <div class="flow-footer">
+    <div>Chars at dot positions: <b>L</b>(12) + <b>Y</b>(25) + <b>C</b>(3) = <b style="color:var(--gold)">40</b> = Roamy rows</div>
+    <div style="text-align:right; font-style:italic;">
+      &ldquo;A <b style="color:var(--gold)">rose</b> by any other name would smell as sweet&rdquo;<br>
+      <span style="font-style:normal;">Romeo &amp; Juliet, Act 2 Scene 2</span>
+    </div>
   </div>
 
-  <p>
-    We tested <strong>all 28 scenes</strong> in the entire play.
-    Only Act 2, Scene 2 produces this match.
-    And remember: the puzzle itself has two phases, mirroring Act <strong>2</strong>, Scene <strong>2</strong>.
-  </p>
 </div>
+</section>
 
-<hr class="divider">
-
-<!-- ═══════════════ STEP 7: MISSING NUMBERS ═══════════════ -->
-<div class="step">
-  <div class="step-num">7</div>
-  <h2>The vault door tells you which columns to read</h2>
-  <p>
-    The 134 numbers on the vault door use most Scrabble values &mdash; but three are
-    <strong>completely missing</strong> from the non-underlined set: <strong>6, 7, and 9</strong>.
-  </p>
-  <p>
-    If you number the grid columns starting from 0 (a common convention in puzzles),
-    those missing numbers point directly to the important columns:
-  </p>
-  <ul>
-    <li>Missing <strong>6</strong> &rarr; Col 6 &rarr; sum = <strong>62 = R62</strong></li>
-    <li>Missing <strong>7</strong> &rarr; Col 7 &rarr; sum = <strong>39 = L39</strong></li>
-    <li>Missing <strong>9</strong> &rarr; Col 9 &rarr; spells <strong>R-O-S-E</strong></li>
-  </ul>
-  <p>The vault door isn't just decoration &mdash; it's an <em>instruction manual</em> pointing you to the grid.</p>
+<!-- ═══════════════ SECTION 3: VAULT TABLE ═══════════════ -->
+<section>
+<h2>19 Vault Words</h2>
+<div class="eli5">
+  The 134 numbers printed around the vault door circle are <strong>Scrabble tile values</strong> of the 19 words' letters.
+  The 19 group sizes match the 19 word lengths exactly.<br><br>
+  <strong>ASTER mask</strong> highlights which letters belong to {A,E,R,S,T} — these are special because they're
+  the Stage 1 cipher set <em>and</em> they all have Scrabble value 1. All 40 ASTER positions on the vault circle show "1".<br><br>
+  <strong>Sum</strong> = total Scrabble value of the word. <strong>Ltr</strong> = that sum converted via A1Z26.
+  <strong>A1Z26</strong> column = the word's own letter-sum (different from Scrabble sum).
+  Gold-highlighted rows are the three words selected by the vault door dots.<br><br>
+  <span class="dim">The three sums that don't appear among the 79 non-underlined vault values are {6, 7, 9} — which are Roamy phrase words #6 SMELL, #7 AS, #9 AS.</span>
 </div>
-
-<!-- ═══════════════ STEP 8: ASTER ═══════════════ -->
-<div class="step">
-  <div class="step-num">8</div>
-  <h2>The letters A, E, R, S, T are special &mdash; they're the "ASTER" set</h2>
-  <p>
-    Five letters &mdash; <strong>A, E, R, S, T</strong> &mdash; appear throughout the puzzle as a
-    special group called <strong>ASTER</strong> (an anagram of the letters, and Greek for "star").
-  </p>
-  <ul>
-    <li>In Scrabble, these 5 letters are all worth <strong>exactly 1 point</strong></li>
-    <li>On the vault door, all 40 positions where ASTER letters appear show the value <strong>1</strong></li>
-    <li>In the boat grid cipher, ASTER = the Stage 1 cipher set {A, E, R, S, T}</li>
-    <li>"ASTER" is also a <strong>flower genus</strong> (star-shaped) &mdash; thematically linked to ROSE</li>
-  </ul>
-
-  <div class="callout callout-gold">
-    <strong>The "91" connection:</strong>
-    For each vault word, count its ASTER letters (n), then compute 1+2+...+n.
-    Sum across all 19 words = <strong>91</strong> = the total number of puzzle locations.
-  </div>
+<div class="tbl-wrap">
+<table class="vault" id="vt"></table>
 </div>
-
-<hr class="divider">
-
-<!-- ═══════════════ STEP 9: ALL 19 WORDS ═══════════════ -->
-<div class="step">
-  <div class="step-num">9</div>
-  <h2>The complete vault word table</h2>
-  <p>
-    Here are all 19 words from the vault door with their Scrabble tile values,
-    ASTER letter count, and the triangular number that sums to 91.
-    Gold-highlighted rows are the three words selected by the gold dots.
-  </p>
-  <div style="overflow-x:auto;">
-    <table class="simple-tbl" id="wordTable"></table>
-  </div>
+<div class="stats">
+  <div class="stat">Letters: <b>134</b></div>
+  <div class="stat">ASTER {A,E,R,S,T}: <b>40</b> &mdash; all Scrabble value 1</div>
+  <div class="stat">Zero-ASTER words: <b>#2 #3 #11 #17</b></div>
+  <div class="stat">Sum of all sums: <b>345</b></div>
+  <div class="stat">T(n) per word: <b>Σ = 91</b> = total locations</div>
 </div>
+</section>
 
-<!-- ═══════════════ STEP 10: COMBO = ROSE DECOMPOSITION ═══════════════ -->
-<div class="step">
-  <div class="step-num">10</div>
-  <h2>The combo numbers ARE the word ROSE, decomposed</h2>
-  <p>
-    The three Scrabble sums of the dot words (18 + 15 + 19 = 52) plus R05 (5) = <strong>57 = A1Z26(ROSE)</strong>.
-    But it goes deeper &mdash; every combo number is a piece of ROSE:
-  </p>
-  <table class="simple-tbl" style="max-width:520px; margin:20px auto;">
-    <thead><tr><th>Combo</th><th>Formula</th><th>Value</th></tr></thead>
+<!-- ═══════════════ SECTION 4: COMBO = ROSE DECOMPOSITION ═══════════════ -->
+<section>
+<h2>Combo Numbers = ROSE Decomposed</h2>
+<div class="eli5">
+  The three dot-word Scrabble sums (18 + 15 + 19 = 52) plus R05 (5) = <strong>57 = A1Z26(ROSE)</strong>.
+  But it goes deeper &mdash; every combo number is a piece of ROSE:<br><br>
+
+  <table style="border-collapse:collapse; margin:8px 0 12px; font-size:0.95em; width:100%;">
+    <thead>
+      <tr style="border-bottom:2px solid var(--border);">
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">Combo</th>
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">Formula</th>
+        <th style="padding:6px 10px; text-align:right; color:var(--dim); font-weight:500;">Value</th>
+      </tr>
+    </thead>
     <tbody>
-      <tr>
-        <td><strong>R05</strong></td>
-        <td>A1Z26(<strong style="color:#7733bb;">E</strong>) &mdash; last letter of ROSE</td>
-        <td><strong>5</strong></td>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 10px; font-weight:700;">R05</td>
+        <td style="padding:8px 10px;">A1Z26(<strong style="color:var(--purple);">E</strong>) &mdash; last letter of ROSE</td>
+        <td style="padding:8px 10px; text-align:right; font-weight:700;">5</td>
       </tr>
-      <tr>
-        <td><strong>L39</strong></td>
-        <td>A1Z26(<strong style="color:#2266aa;">O</strong>+<strong style="color:#1a8a4a;">S</strong>+<strong style="color:#7733bb;">E</strong>) &mdash; ROSE minus R</td>
-        <td>15 + 19 + 5 = <strong>39</strong></td>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 10px; font-weight:700;">L39</td>
+        <td style="padding:8px 10px;">A1Z26(<strong style="color:var(--blue);">O</strong>+<strong style="color:var(--green);">S</strong>+<strong style="color:var(--purple);">E</strong>) &mdash; ROSE minus R</td>
+        <td style="padding:8px 10px; text-align:right; font-weight:700;">15 + 19 + 5 = 39</td>
       </tr>
-      <tr>
-        <td><strong>R62</strong></td>
-        <td>A1Z26(<strong style="color:#cc3333;">R</strong><strong style="color:#2266aa;">O</strong><strong style="color:#1a8a4a;">S</strong><strong style="color:#7733bb;">E</strong>) + R05 &mdash; full word + E</td>
-        <td>57 + 5 = <strong>62</strong></td>
+      <tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 10px; font-weight:700;">R62</td>
+        <td style="padding:8px 10px;">A1Z26(<strong style="color:var(--red);">R</strong><strong style="color:var(--blue);">O</strong><strong style="color:var(--green);">S</strong><strong style="color:var(--purple);">E</strong>) + R05 &mdash; full word + E</td>
+        <td style="padding:8px 10px; text-align:right; font-weight:700;">57 + 5 = 62</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="callout callout-gold">
-    <strong>Self-referential identity:</strong> A1Z26(R) + L39 + R05 = 18 + 39 + 5 = <strong>62 = R62</strong>.<br>
-    The combo numbers sum to themselves. They aren't arbitrary &mdash; they're nested decompositions of the word ROSE.
-  </div>
+  <strong>Self-referential identity:</strong> A1Z26(R) + L39 + R05 = 18 + 39 + 5 = <strong style="color:var(--gold);">62 = R62</strong>.<br>
+  The combo numbers aren't arbitrary &mdash; they're nested decompositions of the word ROSE.
 </div>
-
-<hr class="divider">
-
-<!-- ═══════════════ STEP 11: THE FULL CHAIN ═══════════════ -->
-<div class="step">
-  <div class="step-num">11</div>
-  <h2>The full chain &mdash; everything connects</h2>
-  <div class="card">
-    <p style="font-size:0.9em; line-height:2;">
-      <strong>Globe paths</strong> trace R62, L39, R05 (combination lock code)<br>
-      &darr;<br>
-      <strong>Grid column sums</strong> Col 6=62, Col 7=39 (combo baked into the phrase)<br>
-      &darr;<br>
-      <strong>Vault door dots</strong> at positions 5, 39, 62 select words &rarr; ROSE<br>
-      &darr;<br>
-      <strong>Shakespeare Act 2 Scene 2</strong> positions 5, 39, 62 &rarr; S, F, R = Grid Row 1 combo columns<br>
-      &darr;<br>
-      <strong>Grid Col 9</strong> reads down: R-O-S-E<br>
-      &darr;<br>
-      <strong>"A rose by any other name would smell as sweet"</strong> = the original quote<br>
-      &darr;<br>
-      <strong>Roamy phrase</strong> = the Shakespeare substitution (same structure, 40 letters)
-    </p>
-  </div>
-  <p style="text-align:center; color:#888; font-size:0.88em; margin-top:12px;">
-    Every layer of the puzzle independently points to <strong style="color:#b8860b; font-size:1.1em;">ROSE</strong>.
-  </p>
-</div>
-
-<div class="footer">
-  MrBeast &times; Salesforce $1M Puzzle Hunt &mdash; Designed by Mike Selinker / Lone Shark Games
-</div>
+</section>
 
 </div>
 
 <script>
-// ── Data ──
 const ASTER = new Set(['A','E','R','S','T']);
-const WORDS = [
-  ['HEXYL',       [4,1,8,4,1],               5 ],
-  ['BOXFUL',      [3,1,8,4,1,1],             0 ],
-  ['CHYND',       [3,4,4,1,2],               0 ],
-  ['LEWD',        [1,1,4,2],                 0 ],
-  ['MAHZOR',      [3,1,4,10,1,1],            0 ],
-  ['DYSTOPIC',    [2,4,1,1,1,3,1,3],         0 ],
-  ['ATAXY',       [1,1,1,8,4],               39],
-  ['BLINTZ',      [3,1,1,1,1,10],            0 ],
-  ['WHISKEY',     [4,4,1,1,5,1,4],           0 ],
-  ['EXQUISITE',   [1,8,10,1,1,1,1,1,1],      0 ],
-  ['CONFLUX',     [3,1,1,4,1,1,8],           62],
-  ['HEXASTYLES',  [4,1,8,1,1,1,4,1,1,1],     0 ],
-  ['GEARBOX',     [2,1,1,1,3,1,8],           0 ],
-  ['SKYSCRAPES',  [1,5,4,1,3,1,1,3,1,1],     0 ],
-  ['PSYCHOBABBLE',[3,1,4,3,4,1,3,1,3,3,1,1], 0 ],
-  ['SCHWA',       [1,3,4,4,1],               0 ],
-  ['MPOX',        [3,3,1,8],                 0 ],
-  ['KAZILLIONS',  [5,1,10,1,1,1,1,1,1,1],    0 ],
-  ['HANDGRIP',    [4,1,1,2,2,1,1,3],         0 ],
+const V = [
+  ['HEXYL',       [4,1,8,4,1],               '5' ],
+  ['BOXFUL',      [3,1,8,4,1,1],             ''  ],
+  ['CHYND',       [3,4,4,1,2],               ''  ],
+  ['LEWD',        [1,1,4,2],                 ''  ],
+  ['MAHZOR',      [3,1,4,10,1,1],            ''  ],
+  ['DYSTOPIC',    [2,4,1,1,1,3,1,3],         ''  ],
+  ['ATAXY',       [1,1,1,8,4],               '39'],
+  ['BLINTZ',      [3,1,1,1,1,10],            ''  ],
+  ['WHISKEY',     [4,4,1,1,5,1,4],           ''  ],
+  ['EXQUISITE',   [1,8,10,1,1,1,1,1,1],      ''  ],
+  ['CONFLUX',     [3,1,1,4,1,1,8],           '62'],
+  ['HEXASTYLES',  [4,1,8,1,1,1,4,1,1,1],     ''  ],
+  ['GEARBOX',     [2,1,1,1,3,1,8],           ''  ],
+  ['SKYSCRAPES',  [1,5,4,1,3,1,1,3,1,1],     ''  ],
+  ['PSYCHOBABBLE',[3,1,4,3,4,1,3,1,3,3,1,1], ''  ],
+  ['SCHWA',       [1,3,4,4,1],               ''  ],
+  ['MPOX',        [3,3,1,8],                 ''  ],
+  ['KAZILLIONS',  [5,1,10,1,1,1,1,1,1,1],    ''  ],
+  ['HANDGRIP',    [4,1,1,2,2,1,1,3],         ''  ],
 ];
-const ROSE_IDX = new Set([0,6,10]);
+const ROSE_IDX = [0,6,10];
 
 // ── Build 10x4 grid ──
 (function(){
-  const phrase = 'NUMBERSFORTHISHALFWOULDSMELLASSWEETASONE';
-  const t = document.getElementById('mainGrid');
-  const hd = t.createTHead(), hr = hd.insertRow(), bd = t.createTBody();
-  const th0 = document.createElement('th'); th0.textContent = ''; hr.appendChild(th0);
-  for(let c = 0; c <= 9; c++){
-    const th = document.createElement('th');
-    th.textContent = 'Col ' + c;
-    if(c === 6 || c === 7) th.style.color = '#b8860b';
-    if(c === 9) th.style.color = '#7733bb';
+  const phrase='NUMBERSFORTHISHALFWOULDSMELLASSWEETASONE';
+  const t=document.getElementById('gt'), hd=t.createTHead(), hr=hd.insertRow(), bd=t.createTBody();
+  const th0=document.createElement('th'); th0.textContent=''; hr.appendChild(th0);
+  for(let c=1;c<=10;c++){
+    const th=document.createElement('th');
+    th.innerHTML='C'+c+'<br><span style="font-size:0.8em;color:var(--dim)">['+((c-1))+']</span>';
+    if(c===7||c===8) th.className='combo';
+    if(c===10) th.className='rosecol';
+    // Mark missing vault values {6,7,9} = 0-indexed columns
+    if(c===7||c===8||c===10) th.innerHTML+='<br><span style="font-size:0.75em;color:var(--gold)">⚬missing</span>';
     hr.appendChild(th);
   }
-  const sums = Array(10).fill(0);
-  const words10 = ['NUMBERS','FOR','THIS','HALF','WOULD','SMELL','AS','SWEET','AS','ONE'];
-  for(let r = 0; r < 4; r++){
-    const tr = bd.insertRow();
-    const rl = tr.insertCell(); rl.className = 'rl'; rl.textContent = 'Row ' + (r+1);
-    for(let c = 0; c < 10; c++){
-      const td = tr.insertCell();
-      const ch = phrase[r*10+c];
-      const v = ch.charCodeAt(0) - 64;
-      sums[c] += v;
-      td.textContent = ch;
-      if(c === 6 || c === 7) td.className = 'hi-col';
-      if(c === 9) td.className = 'rose-col';
+  const sums=Array(10).fill(0);
+  for(let r=0;r<4;r++){
+    const tr=bd.insertRow();
+    let td=tr.insertCell(); td.className='rl'; td.textContent='R'+(r+1);
+    for(let c=0;c<10;c++){
+      td=tr.insertCell();
+      const ch=phrase[r*10+c], v=ch.charCodeAt(0)-64; sums[c]+=v;
+      td.textContent=ch;
+      if(c===6||c===7) td.className='combo';
+      if(c===9) td.className='rosecol';
+      if(ASTER.has(ch)) td.classList.add('aster-c');
     }
   }
-  // Sum row
-  const sr = bd.insertRow(); sr.className = 'sum-row';
-  const srl = sr.insertCell(); srl.className = 'rl'; srl.textContent = 'Sum';
-  for(let c = 0; c < 10; c++){
-    const td = sr.insertCell();
-    td.textContent = sums[c];
-    if(c === 6 || c === 7) td.className = 'hi-col';
-    if(c === 9) td.className = 'rose-col';
+  const sr=bd.insertRow(); sr.className='sum-row';
+  let td=sr.insertCell(); td.className='rl'; td.textContent='Sum';
+  for(let c=0;c<10;c++){
+    td=sr.insertCell(); td.textContent=sums[c];
+    if(c===6||c===7) td.className='combo';
+    if(c===9) td.className='rosecol';
   }
-  // Note row
-  const nr = bd.insertRow(); nr.className = 'note-row';
-  nr.insertCell();
-  for(let c = 0; c < 10; c++){
-    const td = nr.insertCell();
-    if(c === 6) td.textContent = '= R62';
-    else if(c === 7) td.textContent = '= L39';
-    else if(c === 9){ td.innerHTML = 'R&#8595;O&#8595;S&#8595;E'; td.style.color = '#7733bb'; }
-    // Note: grid is 0-indexed, so combo cols are 6,7 and ROSE is col 9
+  const lr=bd.insertRow(); lr.className='label-row';
+  td=lr.insertCell();
+  for(let c=0;c<10;c++){
+    td=lr.insertCell();
+    if(c===6){td.textContent='= R62'; td.style.color='var(--gold)';}
+    else if(c===7){td.textContent='= L39'; td.style.color='var(--gold)';}
+    else if(c===9){td.innerHTML='R&darr;O&darr;S&darr;E'; td.style.color='var(--purple)';}
   }
 })();
 
-// ── Build word bar ──
+// ── Build vault table ──
 (function(){
-  const container = document.getElementById('wordBar');
-  const outer = document.createElement('div');
-  outer.style.cssText = 'position:relative; height:36px; background:#eee; border-radius:8px; overflow:visible; margin-bottom:52px;';
+  const t=document.getElementById('vt'), hd=t.createTHead(), hr=hd.insertRow(), bd=t.createTBody();
+  ['#','Word','Scrabble Values','ASTER','Sum','Ltr','A1Z26','T(n)','Range','Dot'].forEach(h=>{
+    const th=document.createElement('th'); th.textContent=h; hr.appendChild(th);
+  });
+  let pos=1, triTotal=0;
+  V.forEach(([w,vals,dot],i)=>{
+    const tr=bd.insertRow(), s=vals.reduce((a,b)=>a+b,0), end=pos+w.length-1;
+    const isR=ROSE_IDX.includes(i), isOF=s>26;
+    if(isR) tr.className='rose';
 
-  let pos = 0;
-  const dotColors = {5:'#cc3333', 39:'#2266aa', 62:'#1a8a4a'};
-  const dotWords = {5:'HEXYL', 39:'ATAXY', 62:'CONFLUX'};
-
-  WORDS.forEach(([w, vals, dot], i) => {
-    const len = w.length;
-    const left = (pos / 134 * 100);
-    const width = (len / 134 * 100);
-    const div = document.createElement('div');
-    div.style.cssText = `position:absolute; top:0; height:100%; left:${left}%; width:${width}%;
-      background:${i%2===0 ? 'rgba(0,0,0,0.04)' : 'rgba(0,0,0,0.08)'};
-      display:flex; align-items:center; justify-content:center;
-      font-size:0.5em; color:rgba(0,0,0,0.25); overflow:hidden; white-space:nowrap; border-radius:2px;`;
-    if(width > 4) div.textContent = w;
-    outer.appendChild(div);
-
-    if(dot){
-      const dotEl = document.createElement('div');
-      const dotPct = ((pos + len) / 134 * 100); // dot at END of word for pos 5 (after HEXYL)
-      // Actually dots are at specific positions within the 134-char sequence
-      const dotLeft = (dot / 134 * 100);
-      dotEl.style.cssText = `position:absolute; top:-8px; left:calc(${dotLeft}% - 8px); width:16px; height:16px;
-        border-radius:50%; background:#b8860b; border:2px solid #fff; z-index:3;
-        box-shadow:0 1px 4px rgba(0,0,0,0.25);`;
-      outer.appendChild(dotEl);
-
-      const label = document.createElement('div');
-      label.style.cssText = `position:absolute; top:42px; left:${dotLeft}%; transform:translateX(-50%);
-        text-align:center; white-space:nowrap; font-size:0.8em;`;
-      label.innerHTML = `<strong style="color:${dotColors[dot]}">${w}</strong><span style="display:block;font-size:0.8em;color:#999;">pos ${dot}</span>`;
-      outer.appendChild(label);
+    let td=tr.insertCell(); td.textContent=i+1; td.className='r'; td.style.color='var(--dim)';
+    td=tr.insertCell(); td.textContent=w; td.style.fontWeight='600';
+    if(isR) td.style.color='var(--gold)';
+    td=tr.insertCell();
+    const d=document.createElement('div'); d.className='pills';
+    vals.forEach((v,j)=>{
+      const sp=document.createElement('span');
+      sp.className='pill '+(ASTER.has(w[j])?'a':'n'); sp.textContent=v; d.appendChild(sp);
+    });
+    td.appendChild(d);
+    td=tr.insertCell(); td.className='mask';
+    [...w].forEach(c=>{
+      const sp=document.createElement('span');
+      sp.className=ASTER.has(c)?'hi':'lo'; sp.textContent=ASTER.has(c)?c:'.'; td.appendChild(sp);
+    });
+    td=tr.insertCell(); td.className='c'; td.textContent=s; td.style.fontWeight='600';
+    td=tr.insertCell(); td.className='c ltr';
+    if(isOF){
+      const mod=((s-1)%26)+1; const l=String.fromCharCode(64+mod);
+      td.textContent=l; td.style.color='#996633';
+      td.title='Sum '+s+' > 26, mod 26 = '+mod+' ('+l+')';
+    } else {
+      const l=String.fromCharCode(64+s); td.textContent=l;
+      if(i===0) td.className+=' ltr-R';
+      else if(i===6) td.className+=' ltr-O';
+      else if(i===10) td.className+=' ltr-S';
+      else td.style.color='var(--dim)';
     }
-    pos += len;
+    td=tr.insertCell(); td.className='r'; td.style.color='var(--dim)';
+    td.textContent=[...w].reduce((a,c)=>a+c.charCodeAt(0)-64,0);
+
+    // T(n) column: ASTER count → triangular number
+    const n=[...w].filter(c=>ASTER.has(c)).length;
+    const tri=n*(n+1)/2;
+    triTotal+=tri;
+    td=tr.insertCell(); td.className='c'; td.style.fontSize='0.85em';
+    if(n===0){
+      td.textContent='—'; td.style.color='var(--dim)';
+    } else {
+      const seq=Array.from({length:n},(_,k)=>k+1).join('+');
+      td.innerHTML='<span style="color:var(--dim)">'+seq+'</span> = <b style="color:var(--gold)">'+tri+'</b>';
+      td.title=n+' ASTER letters → T('+n+') = '+tri;
+    }
+
+    td=tr.insertCell(); td.className='r'; td.style.color='var(--dim)'; td.style.fontSize='0.9em';
+    td.textContent=pos+'-'+end;
+    td=tr.insertCell(); td.className='c';
+    if(dot){const b=document.createElement('span');b.className='dot-badge';b.textContent='●'+dot;td.appendChild(b);}
+    pos=end+1;
   });
 
-  container.appendChild(outer);
+  // Sum row for T(n)
+  const sr=bd.insertRow(); sr.style.borderTop='2px solid var(--border)';
+  for(let c=0;c<10;c++){
+    const td=sr.insertCell();
+    if(c===7){
+      td.className='c'; td.style.fontWeight='700'; td.style.fontSize='0.9em';
+      td.innerHTML='<span style="color:var(--gold)">Σ = '+triTotal+'</span>';
+      td.title='Sum of all triangular numbers = 91 = total locations';
+    }
+  }
 })();
 
-// ── Build word table ──
+// ── Add separator ticks to the 134-char bar ──
 (function(){
-  const t = document.getElementById('wordTable');
-  const hd = t.createTHead(), hr = hd.insertRow(), bd = t.createTBody();
-  ['#','Word','Scrabble Total','ASTER Count','Letter (A1Z26)','T(n) → 91'].forEach(h => {
-    const th = document.createElement('th'); th.textContent = h; hr.appendChild(th);
-  });
-
-  let triTotal = 0;
-  WORDS.forEach(([w, vals, dot], i) => {
-    const tr = bd.insertRow();
-    const s = vals.reduce((a,b) => a+b, 0);
-    const isRose = ROSE_IDX.has(i);
-    if(isRose) tr.className = 'rose-row';
-
-    // #
-    let td = tr.insertCell();
-    td.textContent = i+1;
-    td.className = 'dim';
-
-    // Word
-    td = tr.insertCell();
-    td.innerHTML = isRose
-      ? `<strong class="gold">${w}</strong> <span style="background:#b8860b;color:#fff;font-size:0.7em;padding:1px 6px;border-radius:8px;margin-left:4px;">dot ${dot}</span>`
-      : w;
-
-    // Scrabble Total
-    td = tr.insertCell();
-    td.textContent = s;
-    td.style.fontWeight = '600';
-
-    // ASTER Count
-    const n = [...w].filter(c => ASTER.has(c)).length;
-    td = tr.insertCell();
-    if(n === 0){
-      td.textContent = '0';
-      td.className = 'dim';
-    } else {
-      const letters = [...w].filter(c => ASTER.has(c)).join('');
-      td.innerHTML = `${n} <span style="color:#bbb; font-size:0.85em;">(${letters})</span>`;
+  const bar=document.getElementById('vbar');
+  const sizes=[5,6,5,4,6,8,5,6,7,9,7,10,7,10,12,5,4,10,8]; // word lengths
+  const combo=new Set([5,39,62]);
+  let cum=0;
+  for(let i=0;i<sizes.length-1;i++){
+    cum+=sizes[i];
+    const pct=(cum/134*100).toFixed(2);
+    // Don't draw separator on top of combo dots (5 and 39 are separators AND combo)
+    if(!combo.has(cum)){
+      const sep=document.createElement('div');
+      sep.className='sep';
+      sep.style.left=pct+'%';
+      sep.title='pos '+cum+' (after word #'+(i+1)+')';
+      bar.appendChild(sep);
     }
-
-    // Letter
-    td = tr.insertCell();
-    if(s > 26){
-      const mod = ((s-1)%26)+1;
-      td.textContent = String.fromCharCode(64+mod);
-      td.style.color = '#999';
-      td.title = `Sum ${s} > 26, wraps to ${mod}`;
-    } else {
-      const l = String.fromCharCode(64+s);
-      td.textContent = l;
-      if(i===0) td.style.cssText = 'font-weight:800; color:#cc3333; font-size:1.1em;';
-      else if(i===6) td.style.cssText = 'font-weight:800; color:#2266aa; font-size:1.1em;';
-      else if(i===10) td.style.cssText = 'font-weight:800; color:#1a8a4a; font-size:1.1em;';
-      else td.style.color = '#999';
-    }
-
-    // T(n)
-    const tri = n*(n+1)/2;
-    triTotal += tri;
-    td = tr.insertCell();
-    if(n === 0){
-      td.textContent = '—';
-      td.className = 'dim';
-    } else {
-      const seq = Array.from({length:n}, (_,k) => k+1).join('+');
-      td.innerHTML = `<span style="color:#bbb">${seq}</span> = <strong class="gold">${tri}</strong>`;
-    }
-  });
-
-  // Total row
-  const sr = bd.insertRow();
-  sr.style.borderTop = '2px solid #ddd';
-  for(let c = 0; c < 5; c++) sr.insertCell();
-  const td = sr.insertCell();
-  td.innerHTML = '<strong class="gold" style="font-size:1.05em;">Total = 91</strong>';
+  }
 })();
 </script>
 </body>
