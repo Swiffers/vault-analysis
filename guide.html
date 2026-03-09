@@ -199,13 +199,13 @@
   </div>
 
   <div class="callout callout-gold">
-    <strong>Column 7 sums to 62</strong> and <strong>Column 8 sums to 39</strong> &mdash;
+    <strong>Column 6 sums to 62</strong> and <strong>Column 7 sums to 39</strong> &mdash;
     these are the combination lock numbers <strong>R62</strong> (turn right to 62) and <strong>L39</strong> (turn left to 39)!
     The lock code <strong>R62 L39 R05</strong> is literally baked into the grid.
   </div>
 
   <div class="callout callout-green">
-    <strong>Column 10 reads downward: R &rarr; O &rarr; S &rarr; E</strong>.
+    <strong>Column 9 reads downward: R &rarr; O &rarr; S &rarr; E</strong>.
     Its sum is 57, which equals the number value of the word ROSE (18+15+19+5 = 57).
     The grid spells out the answer in its last column.
   </div>
@@ -316,7 +316,7 @@
     position 62 = <strong style="color:#7733bb;">R</strong>.
     <br>
     These are exactly the letters in <strong>Row 1 of the grid</strong> at the combo columns
-    (C7=S, C8=F, C10=R). The grid and Shakespeare are cross-referencing each other.
+    (C6=S, C7=F, C9=R). The grid and Shakespeare are cross-referencing each other.
   </div>
 
   <p>
@@ -341,9 +341,9 @@
     those missing numbers point directly to the important columns:
   </p>
   <ul>
-    <li>Missing <strong>6</strong> &rarr; Column 6 &rarr; sum = <strong>62 = R62</strong></li>
-    <li>Missing <strong>7</strong> &rarr; Column 7 &rarr; sum = <strong>39 = L39</strong></li>
-    <li>Missing <strong>9</strong> &rarr; Column 9 &rarr; spells <strong>R-O-S-E</strong></li>
+    <li>Missing <strong>6</strong> &rarr; Col 6 &rarr; sum = <strong>62 = R62</strong></li>
+    <li>Missing <strong>7</strong> &rarr; Col 7 &rarr; sum = <strong>39 = L39</strong></li>
+    <li>Missing <strong>9</strong> &rarr; Col 9 &rarr; spells <strong>R-O-S-E</strong></li>
   </ul>
   <p>The vault door isn't just decoration &mdash; it's an <em>instruction manual</em> pointing you to the grid.</p>
 </div>
@@ -394,13 +394,13 @@
     <p style="font-size:0.9em; line-height:2;">
       <strong>Globe paths</strong> trace R62, L39, R05 (combination lock code)<br>
       &darr;<br>
-      <strong>Grid column sums</strong> Col 7=62, Col 8=39 (combo baked into the phrase)<br>
+      <strong>Grid column sums</strong> Col 6=62, Col 7=39 (combo baked into the phrase)<br>
       &darr;<br>
       <strong>Vault door dots</strong> at positions 5, 39, 62 select words &rarr; ROSE<br>
       &darr;<br>
       <strong>Shakespeare Act 2 Scene 2</strong> positions 5, 39, 62 &rarr; S, F, R = Grid Row 1 combo columns<br>
       &darr;<br>
-      <strong>Grid Column 10</strong> reads down: R-O-S-E<br>
+      <strong>Grid Col 9</strong> reads down: R-O-S-E<br>
       &darr;<br>
       <strong>"A rose by any other name would smell as sweet"</strong> = the original quote<br>
       &darr;<br>
@@ -450,11 +450,11 @@ const ROSE_IDX = new Set([0,6,10]);
   const t = document.getElementById('mainGrid');
   const hd = t.createTHead(), hr = hd.insertRow(), bd = t.createTBody();
   const th0 = document.createElement('th'); th0.textContent = ''; hr.appendChild(th0);
-  for(let c = 1; c <= 10; c++){
+  for(let c = 0; c <= 9; c++){
     const th = document.createElement('th');
     th.textContent = 'Col ' + c;
-    if(c === 7 || c === 8) th.style.color = '#b8860b';
-    if(c === 10) th.style.color = '#7733bb';
+    if(c === 6 || c === 7) th.style.color = '#b8860b';
+    if(c === 9) th.style.color = '#7733bb';
     hr.appendChild(th);
   }
   const sums = Array(10).fill(0);
@@ -489,6 +489,7 @@ const ROSE_IDX = new Set([0,6,10]);
     if(c === 6) td.textContent = '= R62';
     else if(c === 7) td.textContent = '= L39';
     else if(c === 9){ td.innerHTML = 'R&#8595;O&#8595;S&#8595;E'; td.style.color = '#7733bb'; }
+    // Note: grid is 0-indexed, so combo cols are 6,7 and ROSE is col 9
   }
 })();
 
