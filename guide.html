@@ -100,14 +100,14 @@
   .bar-dot-pos { font-size:0.8em; color:#888; font-weight:400; display:block; }
 
   /* Funnel / conversion */
-  .convert-row { display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin:20px 0; }
-  .convert-item { text-align:center; min-width:120px; }
-  .convert-item .word { font-weight:700; font-size:0.85em; color:#666; }
-  .convert-item .num { font-size:1.8em; font-weight:800; color:#333; line-height:1.3; }
-  .convert-item .arrow { color:#ccc; font-size:1.4em; }
-  .convert-item .letter { font-size:2.8em; font-weight:800; line-height:1.1; }
-  .convert-item .explain { font-size:0.72em; color:#999; }
-  .convert-plus { display:flex; align-items:center; font-size:2em; color:#ccc; font-weight:300; padding-top:40px; }
+  .convert-row { display:flex; justify-content:center; gap:12px; flex-wrap:nowrap; margin:20px 0; }
+  .convert-item { text-align:center; min-width:0; flex:1; max-width:140px; }
+  .convert-item .word { font-weight:700; font-size:0.8em; color:#666; }
+  .convert-item .num { font-size:1.5em; font-weight:800; color:#333; line-height:1.3; }
+  .convert-item .arrow { color:#ccc; font-size:1.2em; }
+  .convert-item .letter { font-size:2.4em; font-weight:800; line-height:1.1; }
+  .convert-item .explain { font-size:0.68em; color:#999; }
+  .convert-plus { display:flex; align-items:center; font-size:1.5em; color:#ccc; font-weight:300; padding-top:40px; }
 
   /* Simple table */
   .simple-tbl { width:100%; border-collapse:collapse; font-size:0.85em; margin:16px 0; }
@@ -130,7 +130,10 @@
     .page { padding:24px 16px 60px; }
     .hero h1 { font-size:1.5em; }
     table.grid td { padding:8px 8px; font-size:1em; }
-    .convert-row { gap:16px; }
+    .convert-row { gap:6px; }
+    .convert-item .letter { font-size:1.8em; }
+    .convert-item .num { font-size:1.2em; }
+    .convert-plus { font-size:1.2em; }
   }
 </style>
 </head>
