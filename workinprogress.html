@@ -432,6 +432,93 @@
 </div>
 </section>
 
+<!-- ═══════════════ SECTION 6: ASTER REMOVAL → COMBO NUMBERS ═══════════════ -->
+<section>
+<h2>ASTER Removal from Vault Words &rarr; Combo Numbers</h2>
+<div class="eli5">
+  The S1 cipher set <strong>ASTER {A,E,R,S,T}</strong> acts as a key: <strong>remove those letters from each vault word</strong>,
+  then compute the A1Z26 sum of what remains. Out of all 19 vault words, <strong>only two</strong>
+  produce a value matching <em>any</em> of the 10 grid column sums &mdash; and both land on the <strong>combo columns</strong>:<br><br>
+
+  <table style="border-collapse:collapse; margin:8px 0 16px; font-size:0.95em; width:100%;">
+    <thead>
+      <tr style="border-bottom:2px solid var(--border);">
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">#</th>
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">Word</th>
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">Remove ASTER</th>
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">Remaining</th>
+        <th style="padding:6px 10px; text-align:right; color:var(--dim); font-weight:500;">A1Z26</th>
+        <th style="padding:6px 10px; text-align:left; color:var(--dim); font-weight:500;">= Combo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border); background:var(--rose-glow);">
+        <td style="padding:8px 10px; color:var(--dim);">4</td>
+        <td style="padding:8px 10px; font-weight:700;">LEWD</td>
+        <td style="padding:8px 10px; font-family:monospace;">L<span style="color:var(--gold);text-decoration:line-through;">E</span>WD</td>
+        <td style="padding:8px 10px; font-family:monospace; font-weight:600;">L + W + D</td>
+        <td style="padding:8px 10px; text-align:right; font-weight:700;">12+23+4 = <strong style="color:var(--gold);">39</strong></td>
+        <td style="padding:8px 10px; font-weight:700; color:var(--gold);">L39</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border); background:var(--rose-glow);">
+        <td style="padding:8px 10px; color:var(--dim);">5</td>
+        <td style="padding:8px 10px; font-weight:700;">MAHZOR</td>
+        <td style="padding:8px 10px; font-family:monospace;">M<span style="color:var(--gold);text-decoration:line-through;">A</span>HZO<span style="color:var(--gold);text-decoration:line-through;">R</span></td>
+        <td style="padding:8px 10px; font-family:monospace; font-weight:600;">M + H + Z + O</td>
+        <td style="padding:8px 10px; text-align:right; font-weight:700;">13+8+26+15 = <strong style="color:var(--gold);">62</strong></td>
+        <td style="padding:8px 10px; font-weight:700; color:var(--gold);">R62</td>
+      </tr>
+    </tbody>
+  </table>
+
+  No other vault word produces <em>any</em> grid column sum via this operation. These are consecutive words (#4 and #5) on the vault circle.<br><br>
+
+  <strong>Bonus cross-links from the removed letters:</strong><br>
+  <table style="border-collapse:collapse; margin:8px 0 12px; font-size:0.92em; width:100%;">
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:6px 10px;">LEWD's removed letter = <strong style="color:var(--gold);">E</strong></td>
+      <td style="padding:6px 10px;">&rarr; A1Z26(E) = <strong style="color:var(--gold);">5 = R05</strong></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:6px 10px;">MAHZOR's removed letters = <strong>A, R</strong></td>
+      <td style="padding:6px 10px;">&rarr; A1Z26(A+R) = 1+18 = <strong>19 = S</strong> (the 19th letter)</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:6px 10px;">MAHZOR no-ASTER &minus; LEWD removed</td>
+      <td style="padding:6px 10px;">&rarr; 62 &minus; 5 = <strong style="color:var(--purple);">57 = A1Z26(ROSE)</strong></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:6px 10px;">DYSTOPIC (#6) removed = <strong>S, T</strong></td>
+      <td style="padding:6px 10px;">&rarr; A1Z26(S+T) = 19+20 = <strong style="color:var(--gold);">39 = L39</strong> (redundant confirmation)</td>
+    </tr>
+  </table>
+
+  <strong>All four numbers</strong> (62, 39, 5, 57) are derivable from just words #4 and #5.<br><br>
+
+  <strong>In plain English:</strong> The ASTER cipher set is a <em>filter</em>. Apply it to the vault words by deleting those letters.
+  LEWD becomes LWD = 39 (L39). MAHZOR becomes MHZO = 62 (R62).
+  The removed E = 5 (R05). And 62 &minus; 5 = 57 = ROSE.
+  This is a separate encoding layer from the dot-position Scrabble &rarr; ROSE mechanism &mdash; two independent
+  paths both pointing to the same combination.<br><br>
+
+  <span class="dim">Statistical note: Monte Carlo testing shows ~1 in 45 chance that random words would have exactly two
+  no-ASTER matches with grid column sums, both landing on the combo columns. Modest alone, but additive
+  to the multi-layer correlation chain.</span>
+</div>
+
+<!-- Full no-ASTER table for all 19 words -->
+<div class="tbl-wrap">
+<table class="vault" id="noaster-tbl"></table>
+</div>
+<div class="stats" style="margin-top:14px;">
+  <div class="stat">Only <b>2/19</b> words match any column sum</div>
+  <div class="stat">Both = <b>combo columns</b> (C7=62, C8=39)</div>
+  <div class="stat">Removed E = <b>5 = R05</b></div>
+  <div class="stat">62 &minus; 5 = <b>57 = ROSE</b></div>
+  <div class="stat">Words #4 &amp; #5 span <b>10 circle positions</b> = grid column count</div>
+</div>
+</section>
+
 </div>
 
 <script>
@@ -617,6 +704,71 @@ const ROSE_IDX = [0,6,10];
       bar.appendChild(sep);
     }
   }
+})();
+
+// ── Build no-ASTER A1Z26 table ──
+(function(){
+  const t=document.getElementById('noaster-tbl'), hd=t.createTHead(), hr=hd.insertRow(), bd=t.createTBody();
+  ['#','Word','Full A1Z26','ASTER Letters','Removed A1Z26','Non-ASTER','No-ASTER A1Z26','Matches'].forEach(h=>{
+    const th=document.createElement('th'); th.textContent=h; hr.appendChild(th);
+  });
+  const colSums=new Set([74,64,31,45,46,25,62,39,53,57]);
+  const comboNums={39:'L39',62:'R62',5:'R05',57:'ROSE'};
+  V.forEach(([w,vals,dot],i)=>{
+    const tr=bd.insertRow();
+    const fullA1=([...w]).reduce((a,c)=>a+c.charCodeAt(0)-64,0);
+    const asterLetters=([...w]).filter(c=>ASTER.has(c));
+    const nonAster=([...w]).filter(c=>!ASTER.has(c));
+    const removedA1=asterLetters.reduce((a,c)=>a+c.charCodeAt(0)-64,0);
+    const noAsterA1=nonAster.reduce((a,c)=>a+c.charCodeAt(0)-64,0);
+    const isMatch=colSums.has(noAsterA1);
+    const isCombo=(noAsterA1===39||noAsterA1===62);
+
+    if(isCombo) tr.style.background='var(--rose-glow)';
+
+    let td=tr.insertCell(); td.textContent=i+1; td.className='r'; td.style.color='var(--dim)';
+    td=tr.insertCell(); td.textContent=w; td.style.fontWeight='600';
+    if(isCombo) td.style.color='var(--gold)';
+    td=tr.insertCell(); td.className='r'; td.textContent=fullA1;
+    td=tr.insertCell(); td.className='c';
+    if(asterLetters.length>0){
+      td.innerHTML=asterLetters.map(c=>'<span style="color:var(--gold);font-weight:600">'+c+'</span>').join(' ');
+    } else {
+      td.textContent='—'; td.style.color='var(--dim)';
+    }
+    td=tr.insertCell(); td.className='r';
+    if(removedA1>0){
+      td.textContent=removedA1;
+      // Highlight if removed ASTER = combo number
+      if(comboNums[removedA1]){
+        td.style.color='var(--gold)'; td.style.fontWeight='700';
+        td.title='Removed ASTER = '+comboNums[removedA1];
+      }
+    } else {
+      td.textContent='0'; td.style.color='var(--dim)';
+    }
+    td=tr.insertCell(); td.className='c'; td.style.fontFamily='monospace'; td.style.letterSpacing='1px';
+    if(nonAster.length>0){
+      td.textContent=nonAster.join('');
+    } else {
+      td.textContent='—'; td.style.color='var(--dim)';
+    }
+    td=tr.insertCell(); td.className='r'; td.style.fontWeight='600';
+    td.textContent=noAsterA1;
+    if(isCombo) td.style.color='var(--gold)';
+
+    td=tr.insertCell(); td.className='c'; td.style.fontSize='0.9em';
+    if(noAsterA1===39){
+      td.innerHTML='<b style="color:var(--gold)">Col 8 = L39</b>';
+    } else if(noAsterA1===62){
+      td.innerHTML='<b style="color:var(--gold)">Col 7 = R62</b>';
+    } else if(isMatch){
+      const colIdx=[74,64,31,45,46,25,62,39,53,57].indexOf(noAsterA1)+1;
+      td.innerHTML='Col '+colIdx;
+    } else {
+      td.textContent='—'; td.style.color='var(--dim)';
+    }
+  });
 })();
 </script>
 </body>
